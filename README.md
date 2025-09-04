@@ -45,30 +45,35 @@ This template includes [shadcn](https://ui.shadcn.com), but **no UI components a
 You can add only the components you need.
 
 ### 1. Add a component
+
 ```bash
 npx shadcn@latest add button
 ```
 
 This will generate the component under:
+
 ```
 components/ui/button.tsx
 ```
 
 ### 2. Import and use
+
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function Example() {
   return (
     <div className="p-8">
       <Button>Click me</Button>
     </div>
-  )
+  );
 }
 ```
 
 ### 3. Customize
+
 All components are copied into your project, so you can freely edit files under:
+
 ```
 components/ui/
 ```
@@ -77,9 +82,9 @@ components/ui/
 
 ## 📚 Learn More
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.  
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.  
-- [shadcn Documentation](https://ui.shadcn.com) - learn about UI components and usage.  
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [shadcn Documentation](https://ui.shadcn.com) - learn about UI components and usage.
 
 You can also check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
