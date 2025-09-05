@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import RepositoryCardSkeleton from "@/components/repository/client/RepositoryCardSkeleton";
-import RepositorySearch from "@/components/repository/server/RepositorySearch";
-import RepositorySearchForm from "@/components/repository/client/RepositorySearchForm";
+import RepositoryList from "@/components/repository/server/RepositoryList";
+import RepositoryListSearch from "@/components/repository/server/RepositoryListSearch";
+import RepositoryListSearchForm from "@/components/repository/client/RepositoryListSearchForm";
 
 interface Props {
   searchParams?: {
@@ -19,18 +19,10 @@ export default function HomePage({ searchParams }: Props) {
       <h1 className="text-2xl font-bold mb-4 text-gray-900">
         GitHub リポジトリ検索
       </h1>
-      <RepositorySearchForm initialKeyword={keyword} />
+      <RepositoryListSearchForm initialKeyword={keyword} />
       {keyword && (
-        <Suspense
-          fallback={
-            <ul className="space-y-4">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <RepositoryCardSkeleton key={i} />
-              ))}
-            </ul>
-          }
-        >
-          <RepositorySearch keyword={keyword} page={page} />
+        <Suspense fallback={<RepositoryList />}>
+          <RepositoryListSearch keyword={keyword} page={page} />
         </Suspense>
       )}
     </div>

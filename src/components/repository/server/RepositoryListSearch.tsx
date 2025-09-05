@@ -7,7 +7,7 @@ interface Props {
   page: number;
 }
 
-export default async function RepositorySearch({ keyword, page }: Props) {
+export default async function RepositoryListSearch({ keyword, page }: Props) {
   if (!keyword) return null;
 
   const perPage = 30;
@@ -19,21 +19,33 @@ export default async function RepositorySearch({ keyword, page }: Props) {
     page: page.toString(),
   });
 
-  const res = await fetch(
-    `https://api.github.com/search/repositories?${params}`,
-    {
-      headers: { Accept: "application/vnd.github.v3+json" },
-      cache: "no-store",
-    }
-  );
-
-  let results: Repository[] = [];
+  let results: Repository[] | undefined = [];
   let totalCount = 0;
 
-  if (res.ok) {
+  try {
+    const res = await fetch(
+      `https://api.github.com/search/repositories?${params}`,
+      {
+        headers: { Accept: "application/vnd.github.v3+json" },
+        cache: "no-store",
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+    }
+
     const data = await res.json();
     results = data.items;
+    // results = undefined;
     totalCount = data.total_count;
+  } catch (err: unknown) {
+    console.error(err);
+    return (
+      <p className="text-red-600">
+        リポジトリの検索中にエラーが発生しました。時間をおいて再試行してください。
+      </p>
+    );
   }
 
   const totalPages = Math.ceil(totalCount / perPage);

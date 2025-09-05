@@ -6,7 +6,9 @@ interface Props {
   initialKeyword?: string;
 }
 
-export default function RepositorySearchForm({ initialKeyword = "" }: Props) {
+export default function RepositoryListSearchForm({
+  initialKeyword = "",
+}: Props) {
   const [keyword, setKeyword] = useState(initialKeyword);
 
   useEffect(() => {

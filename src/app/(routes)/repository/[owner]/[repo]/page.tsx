@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import RepositoryDetailSkeleton from "@/components/repository/client/RepositoryDetailSkeleton";
+import RepositoryDetail from "@/components/repository/server/RepositoryDetail";
 import RepositoryDetailSearch from "@/components/repository/server/RepositoryDetailSearch";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 export default function RepositoryDetailPage({ params }: Props) {
   return (
-    <Suspense fallback={<RepositoryDetailSkeleton />}>
+    <Suspense fallback={<RepositoryDetail repo={undefined} />}>
       <RepositoryDetailSearch owner={params.owner} repo={params.repo} />
     </Suspense>
   );
