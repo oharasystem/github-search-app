@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import RepositoryDetail from "@/components/repository/server/RepositoryDetail";
+import RepositoryDetail from "@/components/repository/client/RepositoryDetail";
 import RepositoryDetailSearch from "@/components/repository/server/RepositoryDetailSearch";
 
 interface Props {

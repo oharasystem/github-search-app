@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
-import RepositoryDetail from "@/components/repository/server/RepositoryDetail";
+import RepositoryDetail from "@/components/repository/client/RepositoryDetail";
+import { fetchRepository } from "@/lib/github";
 
 interface Props {
   owner: string;
@@ -8,19 +8,7 @@ interface Props {
 
 export default async function RepositoryDetailSearch({ owner, repo }: Props) {
   try {
-    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
-      headers: { Accept: "application/vnd.github.v3+json" },
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      if (res.status === 404) {
-        return notFound();
-      }
-      throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
-    }
-
-    const data = await res.json();
+    const data = await fetchRepository({ owner, repo });
     return <RepositoryDetail repo={data} />;
   } catch (err: unknown) {
     console.error(err);

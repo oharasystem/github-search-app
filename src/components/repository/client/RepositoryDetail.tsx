@@ -5,6 +5,7 @@ import IssueIcon from "@/components/icons/IssueIcon";
 import ForkIcon from "@/components/icons/ForkIcon";
 import StarIcon from "@/components/icons/StarIcon";
 import WatcherIcon from "@/components/icons/WatcherIcon";
+import RepositoryStat from "@/components/repository/client/RepositoryStat";
 import { Repository } from "@/lib/types/github";
 
 type Props = {
@@ -51,50 +52,30 @@ export default function RepositoryDetail({ repo }: Props) {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-gray-700">
-        <div className="flex items-center space-x-2">
-          <StarIcon className="w-4 h-4 text-gray-700" />
-          <div className="flex items-center">
-            {isLoading ? (
-              <div className="h-4 w-6 bg-gray-200 rounded animate-pulse mr-1"></div>
-            ) : (
-              <div>{repo.stargazers_count}</div>
-            )}
-            {" stars"}
-          </div>
-        </div>
-        <div className="flex items-center space-x-2">
-          <WatcherIcon className="w-4 h-4 text-gray-700" />
-          <div className="flex items-center">
-            {isLoading ? (
-              <div className="h-4 w-6 bg-gray-200 rounded animate-pulse mr-1"></div>
-            ) : (
-              <div>{repo.watchers_count}</div>
-            )}
-            {" watching"}
-          </div>
-        </div>
-        <div className="flex items-center space-x-2">
-          <ForkIcon className="w-4 h-4 text-gray-700" />
-          <div className="flex items-center">
-            {isLoading ? (
-              <div className="h-4 w-6 bg-gray-200 rounded animate-pulse mr-1"></div>
-            ) : (
-              <div>{repo.forks_count}</div>
-            )}
-            {" forks"}
-          </div>
-        </div>
-        <div className="flex items-center space-x-2">
-          <IssueIcon className="w-4 h-4 text-gray-700" />
-          <div className="flex items-center">
-            {isLoading ? (
-              <div className="h-4 w-6 bg-gray-200 rounded animate-pulse mr-1"></div>
-            ) : (
-              <div>{repo.open_issues_count}</div>
-            )}
-            {" issues"}
-          </div>
-        </div>
+        <RepositoryStat
+          icon={<StarIcon />}
+          value={repo?.stargazers_count}
+          label="stars"
+          isLoading={isLoading}
+        />
+        <RepositoryStat
+          icon={<WatcherIcon />}
+          value={repo?.watchers_count}
+          label="watching"
+          isLoading={isLoading}
+        />
+        <RepositoryStat
+          icon={<ForkIcon />}
+          value={repo?.forks_count}
+          label="forks"
+          isLoading={isLoading}
+        />
+        <RepositoryStat
+          icon={<IssueIcon />}
+          value={repo?.open_issues_count}
+          label="issues"
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

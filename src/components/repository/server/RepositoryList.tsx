@@ -1,4 +1,4 @@
-import RepositoryCard from "@/components/repository/server/RepositoryCard";
+import RepositoryCard from "@/components/repository/client/RepositoryCard";
 import { Repository } from "@/lib/types/github";
 
 interface Props {
