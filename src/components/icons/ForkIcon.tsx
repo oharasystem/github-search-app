@@ -1,5 +1,5 @@
 export default function ForkIcon({
-  className = "w-4 h-4",
+  className = "w-4 h-4 text-gray-700",
 }: {
   className?: string;
 }) {
