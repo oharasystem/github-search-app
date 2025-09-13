@@ -24,7 +24,7 @@ export default function Pagination({
   }
 
   return (
-    <div className="flex justify-center space-x-2 mt-6">
+    <nav className="flex justify-center space-x-2 mt-6" aria-label="Pagination">
       {currentPage > 1 && (
         <Link
           href={`${baseUrl}&page=${currentPage - 1}`}
@@ -56,6 +56,6 @@ export default function Pagination({
           次へ
         </Link>
       )}
-    </div>
+    </nav>
   );
 }
